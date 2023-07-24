@@ -1,23 +1,10 @@
 
 import 'package:final_project/project1(gov_plastic_collector)/ui/sign_up.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../authintication/helper/helper_class.dart';
 import 'Users.dart';
 import 'admin.dart';
-
-
-
-
-void main() async
-{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  User? user = FirebaseAuth.instance.currentUser;
-  runApp(MaterialApp(home: signin(),));
-}
 
 class signin extends StatefulWidget {
 
@@ -176,7 +163,7 @@ class _signinState extends State<signin> {
                       });
                       if(adname==name&&adpsd==pas)
                         {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => hivep1(),));
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => hivep1(),));
                         }
                     },
                     child: Text(

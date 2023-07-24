@@ -1,7 +1,10 @@
 import 'package:final_project/project1(gov_plastic_collector)/ui/sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:list_picker/list_picker.dart';
 import 'package:lottie/lottie.dart';
 
 
@@ -22,6 +25,7 @@ class _hivep1State extends State<hivep1> {
   TextEditingController name = TextEditingController();
   TextEditingController number = TextEditingController();
   TextEditingController details = TextEditingController();
+  TextEditingController paid = TextEditingController();
 
   final hive_st = Hive.box("box1");
   List<Map<String, dynamic>> data = [];
@@ -39,6 +43,7 @@ class _hivep1State extends State<hivep1> {
         return [PopupMenuItem(child: TextButton(onPressed: ()
         {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => signin(),));
+          Get.snackbar("logout", "admin logged out");
         }
             , child: Text("logout")))];
       },)],
@@ -54,18 +59,34 @@ class _hivep1State extends State<hivep1> {
       body: SafeArea(
           child: Center(
         child: data.isEmpty
-            ? Lottie.asset("assets/animation/refresh.json",
+            ? Lottie.asset("assets/animation/105146-greenify-the-earth.json",
                 width: 200, height: 200)
             : ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   return ExpansionTile(
-                    title: Text("user"),
+                    title: Text(data[index]["name"]),
                     children: [
-                      Text(data[index]["name"]),
-                      Text(data[index]["number"]),
-                      Text(data[index]["details"]),
-                      SizedBox(height: 50,),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 250),
+                        child: Text("name: ${data[index]["name"]}"),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 230),
+                        child: Text("contact no: ${data[index]["number"]}"),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 230),
+                        child: Text("address: ${data[index]["details"]}"),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 200),
+                        child: Text("amount paid: ${data[index]["details"]}"),
+                      ),
+
                       IconButton(
                           onPressed: () {
                             showsheet(data[index]["id"]);
@@ -90,12 +111,14 @@ class _hivep1State extends State<hivep1> {
       name.text = uptdata["name"];
       number.text = uptdata["number"];
       details.text = uptdata["details"];
+      paid.text = uptdata["paid"];
     }
 
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
       builder: (context) {
+        ListPickerField paids;
         return SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.only(
@@ -123,6 +146,12 @@ class _hivep1State extends State<hivep1> {
               SizedBox(
                 height: 30,
               ),
+              paids =
+                  ListPickerField(width:( MediaQuery.of(context).size.width)/2,
+                    label: "paid 50 rs",
+                    items: ["Yes","No"],),
+              SizedBox(
+              height: 30,),
               ElevatedButton(
                   style: ButtonStyle(fixedSize: MaterialStatePropertyAll(Size(300, 50)),
                       backgroundColor: MaterialStatePropertyAll(
