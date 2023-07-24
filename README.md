@@ -1,6 +1,6 @@
 # final_project
 
-A new Flutter project.
+plastic picker is a Flutter project for share data between users and admin about Collecting plastics from home when they are filled.
 
 ## Getting Started
 
