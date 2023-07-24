@@ -24,9 +24,9 @@ class _p1State extends State<p1> {
             isScrollable: true,
             isAutoScroll: true,
             listCustomTabs: [
-              Container(color: Colors.blue,),
-              Container(color: Colors.red,),
-              Container(color: Colors.indigo,)
+              Container(color: Colors.blue,child: Center(child: Text("page 1",style: TextStyle(fontSize: 40,fontStyle: FontStyle.italic),))),
+              Container(color: Colors.red,child: Center(child: Text("page 2",style: TextStyle(fontSize: 40,fontStyle: FontStyle.italic),))),
+              Container(color: Colors.indigo,child: Center(child: Text("page 3",style: TextStyle(fontSize: 40,fontStyle: FontStyle.italic),)))
             ],
             onDonePress: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => log_reg(),));

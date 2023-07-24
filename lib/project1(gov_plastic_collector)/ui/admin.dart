@@ -1,3 +1,4 @@
+import 'package:final_project/project1(gov_plastic_collector)/ui/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -28,19 +29,28 @@ class _hivep1State extends State<hivep1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(backgroundColor: Colors.green[400],
+      floatingActionButton: FloatingActionButton(backgroundColor: Colors.cyan[900],
         onPressed: () {
           showsheet(null);
         },
         child: Icon(Icons.add),
       ),
-      appBar: AppBar(backgroundColor: Colors.green[800],
+      appBar: AppBar(actions: [PopupMenuButton(itemBuilder: (context) {
+        return [PopupMenuItem(child: TextButton(onPressed: ()
+        {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => signin(),));
+        }
+            , child: Text("logout")))];
+      },)],
+          bottom: PreferredSize(child: Container(), preferredSize: Size.fromHeight(50)),
+          backgroundColor: Colors.cyan[900],
           title: Center(
-              child: IconButton(
-                  onPressed: () {
-                    refresh();
-                  },
-                  icon: Icon(Icons.refresh)))),
+            child: IconButton(
+                onPressed: () {
+                  refresh();
+                },
+                icon: Icon(Icons.refresh)),
+          )),
       body: SafeArea(
           child: Center(
         child: data.isEmpty
@@ -114,6 +124,9 @@ class _hivep1State extends State<hivep1> {
                 height: 30,
               ),
               ElevatedButton(
+                  style: ButtonStyle(fixedSize: MaterialStatePropertyAll(Size(300, 50)),
+                      backgroundColor: MaterialStatePropertyAll(
+                          Colors.cyan[900])),
                   onPressed: () async {
                     id == null
                         ? Create({

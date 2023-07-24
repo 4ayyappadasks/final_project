@@ -37,6 +37,21 @@ dependencies:
   animation_list: ^2.2.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  build_runner:
+  hive_generator:
+  http:
+  flutter_staggered_grid_view: ^0.6.2
+  get:
+  cached_network_image:
+  #for fire base
+  firebase_core: ^2.14.0
+  firebase_storage: ^11.2.4
+  image_picker: ^1.0.1
+  path:
+  firebase_auth:
+  custom_refresh_indicator: ^2.2.1
+  google_sign_in: ^6.1.4
+  firebase_phone_auth_handler: ^1.0.8
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -46,8 +61,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
-  hive_generator:
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
